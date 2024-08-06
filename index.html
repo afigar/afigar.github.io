@@ -25,14 +25,32 @@
     <main>
         <section id="services" class="container">
             <h2>Servicios</h2>
-            <ul>
-                <li>ChatBots personalizados para sitios web</li>
-                <li>ChatGPT personalizado con información empresarial</li>
-                <li>Servidores Intranet LLMs</li>
-                <li>Asistentes de Voz</li>
-                <li>Automatizaciones de IA</li>
-                <li>Operadores de Callcenter AI</li>
-            </ul>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>ChatBots personalizados para sitios web</h3>
+                    <p>Desarrollamos chatbots a medida para mejorar la interacción con los visitantes de su sitio web.</p>
+                </div>
+                <div class="service-item">
+                    <h3>ChatGPT personalizado con información empresarial</h3>
+                    <p>Integramos ChatGPT con los datos específicos de su empresa para ofrecer respuestas precisas y útiles.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Servidores Intranet LLMs</h3>
+                    <p>Configuramos servidores LLMs dentro de su intranet para mantener la seguridad y privacidad de los datos.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Asistentes de Voz</h3>
+                    <p>Desarrollamos asistentes de voz que pueden integrarse con sus sistemas para facilitar la interacción por voz.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Automatizaciones de IA</h3>
+                    <p>Implementamos soluciones de automatización utilizando inteligencia artificial para optimizar sus procesos.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Operadores de Callcenter AI</h3>
+                    <p>Proporcionamos operadores de callcenter impulsados por IA para manejar las llamadas de sus clientes de manera eficiente.</p>
+                </div>
+            </div>
         </section>
         <section id="about" class="container">
             <h2>Nosotros</h2>
@@ -40,14 +58,24 @@
         </section>
         <section id="contact" class="container">
             <h2>Contacto</h2>
-            <p>Para más información sobre nuestros servicios, por favor contáctenos:</p>
-            <p>Email: alejandrofigar@yahoo.com.ar</p>
-            <p>Teléfono: +54 9 11 3866-9686</p>
+            <form action="mailto:alejandrofigar@yahoo.com.ar" method="post" enctype="text/plain">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </main>
     <footer>
         <div class="container">
             <p>&copy; 2024 AFigar Asesoría en IA. Todos los derechos reservados.</p>
+            <p>WhatsApp: +54 9 11 3866-9686</p>
         </div>
     </footer>
 </body>
