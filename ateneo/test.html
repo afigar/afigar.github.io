@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prueba Beacon Ateneo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 1.5rem; }
+    h1 { font-size: 1.4rem; }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    button:active { transform: translateY(1px); }
+    #status { margin-top: 1rem; min-height: 1.5rem; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Prueba de presencia con beacon</h1>
+  <p>
+    Pulsa el botón y acepta la búsqueda de dispositivos Bluetooth.<br>
+    Asegúrate de que el ESP32 (<b>AteneoBeacon-C3</b>) esté encendido y cerca.
+  </p>
+
+  <button id="btn">Detectar beacon</button>
+  <div id="status"></div>
+
+  <script>
+    const DEVICE_NAME_PREFIX = "AteneoBeacon-C3"; // nombre del ESP32
+
+    const btn = document.getElementById("btn");
+    const statusEl = document.getElementById("status");
+
+    function setStatus(msg) {
+      statusEl.textContent = msg;
+    }
+
+    async function detectarBeacon() {
+      if (!navigator.bluetooth) {
+        setStatus("Este navegador no soporta Web Bluetooth. Usa Chrome en Android.");
+        return;
+      }
+
+      try {
+        setStatus("Buscando beacon BLE...");
+        const device = await navigator.bluetooth.requestDevice({
+          filters: [{ namePrefix: DEVICE_NAME_PREFIX }]
+          // optionalServices: [] // no necesitamos servicios para esta prueba
+        });
+
+        // Si llegamos aquí, el usuario seleccionó el dispositivo
+        setStatus("✅ Beacon detectado, usted está presente.\nDispositivo: " + device.name);
+
+        // Opcional: conectar para verificar realmente
+        // const server = await device.gatt.connect();
+        // await server.disconnect();
+
+      } catch (err) {
+        console.error(err);
+        if (err.name === "NotFoundError") {
+          setStatus("No se seleccionó ningún dispositivo.");
+        } else {
+          setStatus("Error: " + err.message);
+        }
+      }
+    }
+
+    btn.addEventListener("click", detectarBeacon);
+  </script>
+</body>
+</html>
